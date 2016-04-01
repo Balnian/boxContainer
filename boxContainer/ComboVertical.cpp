@@ -38,14 +38,6 @@ string ComboVertical::drawLine(int line, const baseContainer * parent) const
 	}
 	else if (line == m_up->getExtent().Y + 1)
 	{
-		/*if (parent != nullptr)
-		{
-			temp = string(parent->getExtent().X , '-');
-		}
-		else
-		{
-			temp = string(getExtent().X, '-');
-		}*/
 		temp = string(parent != nullptr ? parent->getExtent().X : getExtent().X, '-');
 	}
 	else if (line > m_up->getExtent().Y + 1)
