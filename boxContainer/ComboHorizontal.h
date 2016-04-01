@@ -1,17 +1,18 @@
 #pragma once
-#include <string>
-#include <vector>
 #include "baseContainer.h"
+#include <memory>
 
 using namespace std;
 
-class Box :
+class ComboHorizontal :
 	public baseContainer
 {
-	vector<string> m_lines;
+	unique_ptr<baseContainer> m_left;
+	unique_ptr<baseContainer> m_right;
 public:
-	Box(string str);
-	~Box();
+	ComboHorizontal(baseContainer& left, baseContainer& right);
+	~ComboHorizontal();
+	ComboHorizontal(const ComboHorizontal & other);
 
 	unique_ptr<baseContainer> clone()const;
 
