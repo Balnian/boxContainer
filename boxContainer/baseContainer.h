@@ -23,13 +23,13 @@ public:
 
 
 	// Entry Point
-	void draw(ostream & stream) const
+	virtual void draw(ostream & stream) const
 	{
 		stream << "+" << string(getExtent().X, '-') << "+" << endl;
 		for (auto i = 0; i < getExtent().Y; ++i)
 		{
 			// Should draw the "|" with stream formating 
-			stream << "|" << drawLine(i) << "|" << endl;
+			stream << "|" << drawLine(i,nullptr) << "|" << endl;
 		}
 		stream << "+" << string(getExtent().X, '-') << "+" << endl;
 	}
@@ -44,7 +44,7 @@ public:
 
 	virtual Vec2<int> getExtent()const = 0;
 	// Subsequent Task
-	virtual string drawLine(/*ostream & stream,*/ int line) const = 0;
+	virtual string drawLine(int line,const baseContainer * parent = nullptr) const = 0;
 
 
 

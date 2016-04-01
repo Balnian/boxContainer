@@ -1,6 +1,5 @@
 #pragma once
 #include "baseContainer.h"
-#include <memory>
 
 using namespace std;
 
@@ -18,7 +17,7 @@ public:
 
 
 	Vec2<int> getExtent()const override;
-	string drawLine(/*ostream & stream,*/ int line) const override;
+	string drawLine(int line, const baseContainer * parent = nullptr) const override;
 
 
 

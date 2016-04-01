@@ -12,12 +12,13 @@ class Box :
 public:
 	Box(string str);
 	~Box();
+	Box(const Box & other);
 
 	unique_ptr<baseContainer> clone()const;
 
 
 	Vec2<int> getExtent()const override;
-	string drawLine(/*ostream & stream,*/ int line) const override;
+	string drawLine(int line, const baseContainer * parent = nullptr) const override;
 
 
 
