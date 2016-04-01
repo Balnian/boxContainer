@@ -26,9 +26,9 @@ Box::Box(const Box & other)
 	m_lines = other.m_lines;
 }
 
-unique_ptr<baseContainer> Box::clone() const
+unique_ptr<Box> Box::clone() const
 {
-	return unique_ptr<baseContainer>(new Box(*this));
+	return unique_ptr<Box>(new Box(*this));
 }
 
 Vec2<int> Box::getExtent()const
@@ -40,11 +40,22 @@ Vec2<int> Box::getExtent()const
 	return Vec2<int>(width != end(m_lines) ? width->size() : 0, m_lines.size());
 }
 
-string Box::drawLine(int line, const baseContainer * parent) const
+string Box::drawLine(int line, const Box * parent) const
 {
 	string temp;
 	if (line < m_lines.size())
 		temp = m_lines[line];
 	temp.resize(getExtent().X, ' ');
 	return temp;
+}
+
+void Box::draw(ostream & stream) const
+{
+	stream << "+" << string(getExtent().X, '-') << "+" << endl;
+	for (auto i = 0; i < getExtent().Y; ++i)
+	{
+		// Should draw the "|" with stream formating 
+		stream << "|" << drawLine(i, nullptr) << "|" << endl;
+	}
+	stream << "+" << string(getExtent().X, '-') << "+" << endl;
 }

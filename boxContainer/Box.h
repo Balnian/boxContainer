@@ -1,24 +1,41 @@
 #pragma once
+#include <ostream>
+#include <memory>
 #include <string>
 #include <vector>
-#include "baseContainer.h"
 
 using namespace std;
 
-class Box :
-	public baseContainer
+template<typename T>
+struct Vec2
+{
+	Vec2(T x, T y) :X(x), Y(y)
+	{}
+	T X;
+	T Y;
+};
+
+class Box
 {
 	vector<string> m_lines;
 public:
-	Box(string str);
+	Box(string str = "");
 	~Box();
 	Box(const Box & other);
 
-	unique_ptr<baseContainer> clone()const;
+	virtual unique_ptr<Box> clone()const;
 
 
-	Vec2<int> getExtent()const override;
-	string drawLine(int line, const baseContainer * parent = nullptr) const override;
+	virtual Vec2<int> getExtent()const ;
+	virtual string drawLine(int line, const Box * parent = nullptr) const ;
+
+	virtual void draw(ostream & stream) const;
+
+	friend ostream& operator<<(ostream & stream, const Box& container)
+	{
+		container.draw(stream);
+		return stream;
+	}
 
 
 

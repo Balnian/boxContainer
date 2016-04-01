@@ -2,7 +2,7 @@
 #include <algorithm>
 
 
-ComboVertical::ComboVertical(baseContainer & up, baseContainer & down)
+ComboVertical::ComboVertical(Box & up, Box & down)
 {
 	m_up = up.clone();
 	m_down = down.clone();
@@ -19,9 +19,9 @@ ComboVertical::ComboVertical(const ComboVertical & other)
 	m_down = other.m_down->clone();
 }
 
-unique_ptr<baseContainer> ComboVertical::clone() const
+unique_ptr<Box> ComboVertical::clone() const
 {
-	return unique_ptr<baseContainer>(new ComboVertical(*this));
+	return unique_ptr<Box>(new ComboVertical(*this));
 }
 
 Vec2<int> ComboVertical::getExtent() const
@@ -29,7 +29,7 @@ Vec2<int> ComboVertical::getExtent() const
 	return Vec2<int>{max(m_up->getExtent().X, m_down->getExtent().X), m_up->getExtent().Y + m_down->getExtent().Y + 1};
 }
 
-string ComboVertical::drawLine(int line, const baseContainer * parent) const
+string ComboVertical::drawLine(int line, const Box * parent) const
 {
 	string temp;
 	if (line <= m_up->getExtent().Y)

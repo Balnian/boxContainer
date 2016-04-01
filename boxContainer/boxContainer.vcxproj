@@ -142,14 +142,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="baseContainer.cpp" />
     <ClCompile Include="Box.cpp" />
     <ClCompile Include="ComboHorizontal.cpp" />
     <ClCompile Include="ComboVertical.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="baseContainer.h" />
     <ClInclude Include="Box.h" />
     <ClInclude Include="ComboHorizontal.h" />
     <ClInclude Include="ComboVertical.h" />
