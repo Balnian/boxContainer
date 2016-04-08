@@ -1,15 +1,16 @@
 #pragma once
 #include "Box.h"
-
+#include "ICombo.h"
 using namespace std;
 
+template<class T1,class T2>
 class ComboHorizontal :
-	public Box
+	public ICombo
 {
-	unique_ptr<Box> m_left;
-	unique_ptr<Box> m_right;
+	unique_ptr<Box<T1>> m_left;
+	unique_ptr<Box<T2>> m_right;
 public:
-	ComboHorizontal(Box& left, Box& right);
+	ComboHorizontal(Box<T1>& left, Box<T2>& right);
 	~ComboHorizontal();
 	ComboHorizontal(const ComboHorizontal & other);
 

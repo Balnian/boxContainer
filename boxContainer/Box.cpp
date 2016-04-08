@@ -2,20 +2,33 @@
 #include <algorithm>
 
 
-Box::Box(string str)
+template<class T, typename enable_if<is_same<string, T>::value>::Type>
+Box::Box(T str)
 {
-	auto previous = begin(str);
-	while (previous != end(str))
+	if (is_same<string, T>::value)
 	{
-		auto found = find(previous, end(str), '\n');
-		m_lines.emplace_back(previous, found);
-		if (found != end(str))
-			++found;
-		previous = found;
+		auto previous = begin(str);
+		while (previous != end(str))
+		{
+			auto found = find(previous, end(str), '\n');
+			m_lines.emplace_back(previous, found);
+			if (found != end(str))
+				++found;
+			previous = found;
+		}
 	}
 
 	//sort(begin(m_lines), end(m_lines), [](string a, string b) {return b.length() < a.length(); });
 }
+
+template<class T, typename enable_if<is_base_of<ICombo, T>::value>::Type>
+Box::Box(T container)
+{
+
+}
+
+template<class T, typename enable_if<is_base_of<ICombo, T>::value || is_same<string, T>::value>::Type>
+using Box = Box<T, typename enable_if<is_base_of<ICombo, T>::value || is_same<string, T>::value>::Type>
 
 Box::~Box()
 {
@@ -39,6 +52,7 @@ Vec2<int> Box::getExtent()const
 	});
 	return Vec2<int>(width != end(m_lines) ? width->size() : 0, m_lines.size());
 }
+
 
 string Box::drawLine(int line, const Box * parent) const
 {

@@ -145,12 +145,14 @@
     <ClCompile Include="Box.cpp" />
     <ClCompile Include="ComboHorizontal.cpp" />
     <ClCompile Include="ComboVertical.cpp" />
+    <ClCompile Include="ICombo.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Box.h" />
     <ClInclude Include="ComboHorizontal.h" />
     <ClInclude Include="ComboVertical.h" />
+    <ClInclude Include="ICombo.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
