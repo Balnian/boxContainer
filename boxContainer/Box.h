@@ -9,8 +9,12 @@ class Box :
 	public baseContainer
 {
 	vector<string> m_lines;
+	unique_ptr<baseContainer> m_item;
+	bool m_isText;
 public:
+	Box() :Box("") {};
 	Box(string str);
+	Box(baseContainer & item);
 	~Box();
 	Box(const Box & other);
 

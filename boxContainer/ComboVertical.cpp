@@ -32,17 +32,17 @@ Vec2<int> ComboVertical::getExtent() const
 string ComboVertical::drawLine(int line, const baseContainer * parent) const
 {
 	string temp;
-	if (line <= m_up->getExtent().Y)
+	if (line < m_up->getExtent().Y /*&& !(m_up->getExtent().Y == 1 && line == m_up->getExtent().Y)*/)
 	{
 		temp = m_up->drawLine(line, this);
 	}
-	else if (line == m_up->getExtent().Y + 1)
+	else if (line == m_up->getExtent().Y /*+ (m_up->getExtent().Y!=1?1:0)*/ )
 	{
 		temp = string(parent != nullptr ? parent->getExtent().X : getExtent().X, '-');
 	}
-	else if (line > m_up->getExtent().Y + 1)
+	else if (line > m_up->getExtent().Y/* + (m_up->getExtent().Y != 1 ? 1 : 0)*/)
 	{
-		temp = m_down->drawLine(line - (m_up->getExtent().Y + 1),this);
+		temp = m_down->drawLine(line - (m_up->getExtent().Y + 1 ),this);
 	}
 	temp.resize(parent != nullptr ? parent->getExtent().X : getExtent().X, ' ');
 

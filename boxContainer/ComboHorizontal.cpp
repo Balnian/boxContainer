@@ -30,9 +30,9 @@ Vec2<int> ComboHorizontal::getExtent() const
 string ComboHorizontal::drawLine(int line, const baseContainer * parent) const
 {
 	string temp;
-	temp += m_left->drawLine(line,this);
+	temp += m_left->drawLine(line, m_left.get());
 	temp += "|";
-	temp += m_right->drawLine(line,this);
+	temp += m_right->drawLine(line, m_right.get());
 	temp.resize(getExtent().X, ' ');
 	return temp;
 }
